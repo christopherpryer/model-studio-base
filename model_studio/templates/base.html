@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %} - MS</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dist/img/favicon.ico') }}" type="image/x-icon" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="{{url_for('main.home')}}">Model Studio</a>
+        </nav>
+    </div>
+
+
+    <ul>
+        {% if g.user and g.user.has_role('Admin') %}
+            <li>User: <span>{{g.user['email']}}</span></li>
+            <li><a href="{{url_for('auth.register')}}">Register</a></li>
+            <li><a href="{{url_for('auth.reset_password')}}">Reset Password</a></li>
+            <li><a href="{{url_for('auth.logout')}}">Log Out</a></li>
+        {% elif g.user %}
+            <li>User: <span>{{g.user['email']}}</span></li>
+            <li><a href="{{url_for('auth.reset_password')}}">Reset Password</a></li>
+            <li><a href="{{url_for('auth.logout')}}">Log Out</a></li>
+        {% else %}
+            <li><a href="{{url_for('auth.login')}}">Log In</a></li>
+        {% endif %}
+    </ul>
+
+
+    <div class="container" align="center">
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{message}}</div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

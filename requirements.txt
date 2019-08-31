@@ -1,0 +1,11 @@
+flask
+flask_assets
+flask_httpauth
+flask_sqlalchemy
+plotly
+dash==1.1.1
+dash-daq==0.1.0
+pyodbc
+pandas
+pytest
+flask_login

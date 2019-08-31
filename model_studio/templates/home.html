@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Home{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <a href={{url_for('/example_dashapp/')}}>Example Dash</a>
+{% endblock %}
