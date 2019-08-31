@@ -2,7 +2,8 @@
 import os
 import urllib
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+base_dir = os.path.abspath(os.path.dirname(__file__))
+instance_dir = os.path.join(base_dir, 'instance')
 
 if os.environ.get('SQL_SERVER'):
     # database: MSSQL example using windows auth
@@ -14,7 +15,7 @@ if os.environ.get('SQL_SERVER'):
 
 else:
     # database: SQLite3
-    con_str = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
+    con_str = 'sqlite:///' + os.path.join(instance_dir, 'db.sqlite')
 
 class Config:
     """Global configuration variables."""
